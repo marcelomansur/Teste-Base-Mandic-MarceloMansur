@@ -57,7 +57,7 @@ ec2_secret_key: ""
 Depois, execute o playbook usando o arquivo _hosts_ como inventário.
 
 ```
-ansible-playbook -i hosts playbook.yml
+ansible-playbook -i hosts main.yml
 ```
 
 ## Como acessar as aplicações
