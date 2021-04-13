@@ -1,0 +1,11 @@
+- hosts: local
+  roles:
+    - provisioning
+
+- hosts: webserver
+  become: yes
+  roles:
+    - nginxinc.nginx
+    - geerlingguy.docker
+    - geerlingguy.pip
+    - deploying

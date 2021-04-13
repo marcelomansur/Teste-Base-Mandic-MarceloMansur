@@ -1,0 +1,3 @@
+---
+# vars file for deploying
+magento_host: "{{ hostvars['localhost']['ec2_public_ip'] }}"

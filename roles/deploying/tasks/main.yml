@@ -1,0 +1,51 @@
+---
+# tasks file for deploying
+- name: Liberar porta 80 no iptables
+  become: yes
+  ansible.builtin.iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: "80"
+    jump: ACCEPT
+    comment: "Accept HTTP connections"
+
+# https://docs.bitnami.com/kubernetes/apps/elasticsearch/configuration/kernel-settings/
+- name: Fix para permitir uso do elasticsearch no docker
+  become: yes
+  raw: sysctl -w vm.max_map_count=262144 && sysctl -w fs.file-max=65536
+  changed_when: false
+
+- name: Copia arquivo docker-compose
+  ansible.builtin.template:
+    src: ./templates/docker-compose.yml.j2
+    dest: /home/centos/docker-compose.yml
+    owner: centos
+    group: centos
+    mode: "0644"
+
+- name: Executa docker compose
+  become: yes
+  become_user: root
+  ansible.builtin.command:
+    cmd: /usr/local/bin/docker-compose -f /home/centos/docker-compose.yml up -d
+#   register: output
+# - ansible.builtin.debug:
+#     var: output
+
+- name: Copia arquivo do site estatico
+  ansible.builtin.copy:
+    src: ./files/index.html
+    dest: /usr/share/nginx/html/index.html
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Copia configuracao de vhosts do nginx
+  ansible.builtin.template:
+    src: ./templates/default.conf.j2
+    dest: /etc/nginx/conf.d/default.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart nginx
