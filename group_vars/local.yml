@@ -1,9 +1,9 @@
 ---
 # vars file for provisioning
 instance_type: t2.medium
-sec_group_name: teste-mandic
+sec_group_name: ansible-test
 image: ami-0affd4508a5d2481b
-keypair: ansible-mandic
+keypair: ansible-test
 region: us-east-1
 count: 1
 # aws credentials

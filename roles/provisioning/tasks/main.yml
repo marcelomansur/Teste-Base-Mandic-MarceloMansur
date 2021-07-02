@@ -22,10 +22,10 @@
     aws_access_key: "{{ ec2_access_key }}"
     aws_secret_key: "{{ ec2_secret_key }}"
     name: "{{ sec_group_name }}"
-    description: sg-teste-mandic
+    description: sg-ansible-test
     region: "{{ region }}"
     resource_tags:
-      Name: teste-mandic
+      Name: ansible-test
     rules:
       - proto: tcp
         from_port: 22
@@ -62,7 +62,7 @@
     module: ec2
     aws_access_key: "{{ ec2_access_key }}"
     aws_secret_key: "{{ ec2_secret_key }}"
-    # id: "teste-mandic"
+    # id: "ansible-test"
     group: "{{ sec_group_name }}"
     instance_type: "{{ instance_type }}"
     image: "{{ image }}"
@@ -71,7 +71,7 @@
     keypair: "{{ keypair }}"
     count: "{{ count }}"
     instance_tags:
-      Name: teste-mandic
+      Name: ansible-test
   register: ec2
 
 - name: Adicionando a instancia ao inventario temp

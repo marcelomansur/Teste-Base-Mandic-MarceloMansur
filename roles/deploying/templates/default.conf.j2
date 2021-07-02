@@ -19,7 +19,7 @@ server {
         proxy_pass http://{{ magento_host }}:8000/;
     }
     
-    location /loja {
+    location /store {
         rewrite ^/loja(.*) /$1 break;
         proxy_pass http://{{ magento_host }}:8001/;
         proxy_buffers   4 512k;

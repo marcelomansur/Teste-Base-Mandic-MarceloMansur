@@ -1,2 +1,2 @@
 .venv
-ansible-mandic.pem
+*.pem
