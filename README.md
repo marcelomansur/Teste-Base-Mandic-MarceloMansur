@@ -15,7 +15,7 @@ This module creates an environment with:
   - http://<ip-address>/tomcat
 
 
-## Requisitos:
+## Requirements:
 
 - Python
   
@@ -28,7 +28,7 @@ This module creates an environment with:
 | boto | = 2.49.0 |
 | boto3 | = 1.17.49 |
 
-- Módulos Ansible
+- Ansible modules
 
 | Name | Version |
 |------|---------|
@@ -37,12 +37,12 @@ This module creates an environment with:
 | geerlingguy.pip | = 2.0.0 |
 
 
-## Como executar o playbook
+## How to run the playbook
 
-Instale o Python 3
+Install Python 3
 
- - Instale o [Python 3](https://www.python.org/downloads/)
- - Instale o ansible usando venv:
+ - Install [Python 3](https://www.python.org/downloads/)
+ - Install ansible using venv module:
 
 ```
 python3 -m venv .venv
@@ -50,13 +50,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Primeiro é necessário instalar as roles necessárias com o comando:
+Install Ansible roles using the command:
 
 ```
 ansible-galaxy install -r requirements.yml
 ```
 
-Também é necessário configurar as credenciais AWS para executar o playbook. Para fins de teste, essas variáveis ficarão armazenadas no arquivo `group_vars/local.yml`. Favor informar suas credenciais no campo:
+Also, configure AWS credentials to run the playbook. For this test, this information will be stored in variables on the file `group_vars/local.yml`. Please, inform your credentials on the fields:
 
 ```yml
 # aws credentials
@@ -64,26 +64,26 @@ ec2_access_key: ""
 ec2_secret_key: ""
 ```
 
-> Referência: https://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html#authentication
+> Ref: https://docs.ansible.com/ansible/latest/scenario_guides/guide_aws.html#authentication
 
 
-Depois, execute o playbook usando o arquivo _hosts_ como inventário.
+Finally, run the playbook using _hosts_ file as inventory.
 
 ```
 ansible-playbook -i hosts main.yml
 ```
 
-## Como acessar as aplicações
+## How to access applications
 
-Identificar o IP público da instância através do resumo da execução do Ansible:
+Identify the public IP of the AWS instance on Ansible execution resume:
 
 ```
 PLAY RECAP *******************************************************************************************************
-3.215.22.35 (este valor) ...
+3.215.22.35 (this value) ...
 localhost                ...
 ```
 
-Testar o acesso às URLs a seguir:
+Access the following pages:
 - http://<IP_PUBLICO>/site
 - http://<IP_PUBLICO>/store
 - http://<IP_PUBLICO>/blob
@@ -91,8 +91,8 @@ Testar o acesso às URLs a seguir:
 
 ## TODO
 
-Para fins de melhorias, existem tarefas a serem implementadas no projeto:
-- [ ] Criar script para encriptar credenciais AWS, usando ansible-vault
-- [ ] Melhorar idempotencia do playbook
-- [ ] Criar pipeline CI com testes automatizados (molecule)
-- [ ] Criar playbook para limpar o ambiente provisionado (ou usar Terraform para provisionamento)
+Some improvements are needed to this project:
+- [ ] Encrypt AWS credentials, using ansible-vault
+- [ ] Improve the playbook idempotence
+- [ ] Create a CI pipeline with molecule tests
+- [ ] Create a playbook to clean the provision
