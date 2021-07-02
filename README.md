@@ -1,5 +1,18 @@
-# Teste-Base-Mandic-MarceloMansur
-Teste de aptidão para entrada no programa de jovens System Engineers da Mandic Cloud Solutions.
+# Challenge my-ansible-provison-all-one
+This project is the result of a challenge to create an entire environment using Ansible on AWS. **It's not using the best praticies of immutable infrastructure**, but it's a good opportunity to show the power of Ansible.
+
+This module creates an environment with:
+
+- Docker-compose environment with:
+  - Magento store
+  - Wordpress blog
+  - An static page
+  - Tomcat configuration
+- Reverse proxy using NGINX and exposing these pages:
+  - http://<ip-address>/store
+  - http://<ip-address>/blog
+  - http://<ip-address>/site
+  - http://<ip-address>/tomcat
 
 
 ## Requisitos:
@@ -72,7 +85,7 @@ localhost                ...
 
 Testar o acesso às URLs a seguir:
 - http://<IP_PUBLICO>/site
-- http://<IP_PUBLICO>/loja
+- http://<IP_PUBLICO>/store
 - http://<IP_PUBLICO>/blob
 - http://<IP_PUBLICO>/tomcat
 
