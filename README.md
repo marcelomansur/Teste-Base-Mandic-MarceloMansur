@@ -9,10 +9,10 @@ This module creates an environment with:
   - An static page
   - Tomcat configuration
 - Reverse proxy using NGINX and exposing these pages:
-  - http://<ip-address>/store
-  - http://<ip-address>/blog
-  - http://<ip-address>/site
-  - http://<ip-address>/tomcat
+  - http://\<ip-address\>/store
+  - http://\<ip-address\>/blog
+  - http://\<ip-address\>/site
+  - http://\<ip-address\>/tomcat
 
 
 ## Requirements:
